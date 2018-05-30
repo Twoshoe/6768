@@ -6,14 +6,21 @@ tree = ET.parse('6768.conf')
 root = tree.getroot()
 
 wanip1 = 'WANIPConnection'
-ip = wanip1.find('ExternalIPAddress')
-sub = wanip1.find('SubnetMask')
-dg = wanip1.find('DefaultGateway')
+#ip = root.getchildren('InternetGatewayDevice/WANDevice[1]/WANConnectionDevice[2]:ExternalIPAddress');
+#sub = root.getchild('InternetGatewayDevice/WANDevice instance="1"/WANConnectionDevice instance="2":SubnetMask')
+#dg = root.getchild('InternetGatewayDevice/WANDevice instance="1"/WANConnectionDevice instance="2":DefaultGateway')
 
 for child in root.iter('ExternalIPAddress'):
     print(child.tag, child.text)
 
-for child in root.findall('wanip1'):
-    print(ip, sub, dg)
+for child in root:
+    for element in child:
+        print (element.tag, ":", element.attrib)
 
-tree.write('out.xml')
+#DslCpeConfig > InternetGatewayDevice > WANDevice instance="1" > WANConnectionDevice instance="2" > WANIPConnection instance"1" > ExternalIPAddress, SubnetMask, DefaultGateway
+currentip = ip.get("text");
+
+for child in root:
+    print(currentip)
+
+#tree.write('out.xml')
