@@ -21,12 +21,20 @@ for WANDevice in root.find('InternetGatewayDevice').findall('WANDevice'):
                         print(WANIPConnection.find('ExternalIPAddress').text, WANIPConnection.find('SubnetMask').text, WANIPConnection.find('DefaultGateway').text)
                         WANIPConnection.find('ExternalIPAddress').text = '10.60.1.10'
                         CommitChanges = True
-                    
+                        ip_base = '10.60.1.' 
+                        ip_start = 10
+                        for (i = ip_start; i < 245; i++) {
+                                    new_ip = ip_base + i.toString()
+                                        change_ip(new_ip)
+                                        }
+                            if (CommitChanges):
+                                tree.write('out.xml')
+
+#This was to print part of the tree
 #for child in root:
 #   for element in child:
 #        print (element.tag, ":", element.attrib)
 
+#This is the path to the external IP address
 #DslCpeConfig > InternetGatewayDevice > WANDevice instance="1" > WANConnectionDevice instance="2" > WANIPConnection instance"1" > ExternalIPAddress, SubnetMask, DefaultGateway
 
-if (CommitChanges):
-    tree.write('out.xml')
