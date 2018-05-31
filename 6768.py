@@ -15,9 +15,9 @@ PARSER = argparse.ArgumentParser(description='Generate configuration files')
 PARSER.add_argument('IP_BASE', metavar='Base', type=str, nargs=1,
         help='IP prefix (e.g. 10.60.1)')
 PARSER.add_argument('IP_START', metavar='Start', type=int, nargs=1,
-        help='IP prefix (e.g. 10)')
+        help='Beginning of IP range (e.g. 10)')
 PARSER.add_argument('IP_END', metavar='End', type=int, nargs=1,
-        help='IP prefix (e.g. 245)')
+        help='End of IP range (e.g. 245)')
 
 ARGS = PARSER.parse_args()
 
